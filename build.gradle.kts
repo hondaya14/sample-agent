@@ -6,6 +6,14 @@ plugins {
 group = "co.hondaya"
 version = "0.0.1"
 
+kotlin {
+    compilerOptions {
+        optIn.add(
+            "-Xjsr305=strict"
+        )
+    }
+}
+
 application {
     mainClass = "io.ktor.server.netty.EngineMain"
 }
