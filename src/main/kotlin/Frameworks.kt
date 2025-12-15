@@ -9,24 +9,11 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
 fun Application.configureFrameworks() {
+    val googleApiKey = System.getenv("GOOGLE_API_KEY")
+
     install(Koog) {
         llm {
-            openAI(apiKey = "your-openai-api-key")
-            anthropic(apiKey = "your-anthropic-api-key")
-            ollama { baseUrl = "http://localhost:11434" }
-            google(apiKey = "your-google-api-key")
-            openRouter(apiKey = "your-openrouter-api-key")
-            deepSeek(apiKey = "your-deepseek-api-key")
-        }
-    }
-    
-    routing {
-        route("/ai") {
-            post("/chat") {
-                val userInput = call.receive<String>()
-                val output = aiAgent(userInput, model = OpenAIModels.Chat.GPT4_1)
-                call.respondText(output)
-            }
+            google(apiKey = googleApiKey)
         }
     }
 }
