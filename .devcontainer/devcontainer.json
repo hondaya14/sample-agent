@@ -1,6 +1,7 @@
 {
 	"name": "mise",
-	"image": "ghcr.io/hondaya14/mise:latest",
+    "dockerFile": "Dockerfile",
+//	"image": "ghcr.io/hondaya14/mise:latest",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
