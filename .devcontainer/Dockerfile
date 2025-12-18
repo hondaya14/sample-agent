@@ -1,7 +1,9 @@
 FROM mcr.microsoft.com/devcontainers/base:debian
 
-RUN apt-get update && apt-get install -y curl
-RUN curl https://mise.run | sh
+RUN sudo apt update -y && sudo apt install -y curl
 
-# Set mise in the PATH
-#ENV PATH="/root/.local/share/mise/bin:/root/.local/share/mise/shims:$PATH"
+RUN sudo install -dm 755 /etc/apt/keyrings
+RUN curl -fSs https://mise.jdx.dev/gpg-key.pub | sudo tee /etc/apt/keyrings/mise-archive-keyring.pub 1> /dev/null
+RUN echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.pub arch=arm64] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
+RUN sudo apt update -y
+RUN sudo apt install -y mise
